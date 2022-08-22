@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "tblNhanVien")
 public class NhanVienModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maNhanVien;
     @Column(name = "ho", nullable = false, length = 30)
     private String ho;
@@ -27,13 +27,12 @@ public class NhanVienModel {
     private String CCCD;
     @Column(name = "ngaySinh", nullable = false)
     private Date ngaySinh;
-    @Column(name = "maTaiKhoan", unique = true, nullable = false)
-    private int maTaiKhoan;
     @Column(name = "trangThai", nullable = false)
     private boolean trangThai;
+    @Column(name = "maTaiKhoan", nullable = false)
+    private int maTaiKhoan;
 
     public NhanVienModel() {}
-
 
     public NhanVienModel(String ho, String ten, String gioiTinh, 
                         String dienThoai, String CCCD, Date ngaySinh, 
@@ -44,8 +43,16 @@ public class NhanVienModel {
         this.dienThoai = dienThoai;
         this.CCCD = CCCD;
         this.ngaySinh = ngaySinh;
-        this.maTaiKhoan = maTaiKhoan;
+        this.maNhanVien = maTaiKhoan;
         this.trangThai = trangThai;
+    }
+
+    public int getMaNhanVien(){
+        return this.maNhanVien;
+    }
+
+    public void setMaNhanVien(int maNhanVien){
+        this.maNhanVien = maNhanVien;
     }
 
     public String getHo() {
@@ -96,14 +103,6 @@ public class NhanVienModel {
         this.ngaySinh = ngaySinh;
     }
 
-    public int getMaTaiKhoan() {
-        return this.maTaiKhoan;
-    }
-
-    public void setMaTaiKhoan(int maTaiKhoan) {
-        this.maTaiKhoan = maTaiKhoan;
-    }
-
     public Boolean isTrangThai() {
         return this.trangThai;
     }
@@ -115,6 +114,15 @@ public class NhanVienModel {
     public void setTrangThai(Boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+    public void setMaTaiKhoan(int maTaiKhoan) {
+        this.maTaiKhoan = maTaiKhoan;
+    }    
+
+    public int getMaTaiKhoan() {
+        return this.maTaiKhoan;
+    }
+
 
 
 }

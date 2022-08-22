@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "tblKhachHang")
 public class KhachHangModel {
@@ -16,19 +17,19 @@ public class KhachHangModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maKhachHang;
-    @Column(name = "ho", nullable = false, length = 30)
+    @Column(name = "ho", length = 50)
     private String ho;
-    @Column(name = "ten", nullable = false, length = 10)
+    @Column(name = "ten", nullable = false, length = 50)
     private String ten;
-    @Column(name = "gioiTinh", nullable = false, length = 10)
+    @Column(name = "gioiTinh", length = 10)
     private String gioiTinh;
-    @Column(name = "dienThoai", unique = true, nullable = true, length = 20)
+    @Column(name = "dienThoai", length = 20)
     private String dienThoai;
-    @Column(name = "ngaySinh", nullable = false, length = 10)
+    @Column(name = "ngaySinh")
     private Date ngaySinh;
-    @Column(name = "maTaiKhoan", nullable = false, unique = true)
+    @Column(name = "maTaiKhoan", nullable = false)
     private int maTaiKhoan;
-
+    
 
     public KhachHangModel() {}
 
@@ -94,10 +95,8 @@ public class KhachHangModel {
         return this.maTaiKhoan;
     }
 
-    public void setMaTaiKhoan(int maTaiKhoan) {
+    public void setTaiKhoan(int maTaiKhoan) {
         this.maTaiKhoan = maTaiKhoan;
     }
-    
-
 
 }

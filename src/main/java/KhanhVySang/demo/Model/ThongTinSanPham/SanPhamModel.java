@@ -1,5 +1,7 @@
 package KhanhVySang.demo.Model.ThongTinSanPham;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,42 +9,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "tblSanPham")
 public class SanPhamModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maSanPham;
     @Column(name = "tenSanPham", nullable = false, unique = true, length = 50)
     private String tenSanPham;
     @Column(name = "gia", nullable = false)
-    private float gia;
-    @Column(name = "soLuong", nullable = false)
+    private int gia;
+    @Column(name = "soLuong")
     private int soLuong;
     @Column(name = "moTa", length = 30)
     private String moTa;
-    @Column(name = "anhDaiDien", nullable = false, length = 100)
-    private String anhDaiDien;
-    @Column(name = "anhMoTa", length = 300)
-    private String anhMoTa;
+    @Column(name = "hinhAnh", nullable = false, length = 150)
+    private String hinhAnh;
     @Column(name = "maLoaiSanPham", nullable = false)
     private int maLoaiSanPham;
-    @Column(name = "maUuDai")
-    private int maUuDai;
+    @Column(name = "maUuDai", nullable = true)
+    private Integer maUuDai;
 
     public SanPhamModel() {}
 
-
-    public SanPhamModel(String tenSanPham, float gia, int soLuong, 
-                        String moTa, String anhDaiDien, String anhMoTa, 
-                        int maLoaiSanPham, int maUuDai) {
+    public SanPhamModel(int maSanPham, String tenSanPham, int gia, int soLuong, String moTa, String hinhAnh, int maLoaiSanPham, Integer maUuDai) {
+        this.maSanPham = maSanPham;
         this.tenSanPham = tenSanPham;
         this.gia = gia;
         this.soLuong = soLuong;
         this.moTa = moTa;
-        this.anhDaiDien = anhDaiDien;
-        this.anhMoTa = anhMoTa;
+        this.hinhAnh = hinhAnh;
         this.maLoaiSanPham = maLoaiSanPham;
         this.maUuDai = maUuDai;
     }
@@ -63,11 +61,11 @@ public class SanPhamModel {
         this.tenSanPham = tenSanPham;
     }
 
-    public float getGia() {
+    public int getGia() {
         return this.gia;
     }
 
-    public void setGia(float gia) {
+    public void setGia(int gia) {
         this.gia = gia;
     }
 
@@ -87,20 +85,12 @@ public class SanPhamModel {
         this.moTa = moTa;
     }
 
-    public String getAnhDaiDien() {
-        return this.anhDaiDien;
+    public String getHinhAnh() {
+        return this.hinhAnh;
     }
 
-    public void setAnhDaiDien(String anhDaiDien) {
-        this.anhDaiDien = anhDaiDien;
-    }
-
-    public String getAnhMoTa() {
-        return this.anhMoTa;
-    }
-
-    public void setAnhMoTa(String anhMoTa) {
-        this.anhMoTa = anhMoTa;
+    public void setHinhAnh(String hinhAnh) {
+        this.hinhAnh = hinhAnh;
     }
 
     public int getMaLoaiSanPham() {
@@ -111,6 +101,13 @@ public class SanPhamModel {
         this.maLoaiSanPham = maLoaiSanPham;
     }
 
+    public Integer getMaUuDai() {
+        return this.maUuDai;
+    }
+
+    public void setMaUuDai(Integer maUuDai) {
+        this.maUuDai = maUuDai;
+    }
 
 
 }

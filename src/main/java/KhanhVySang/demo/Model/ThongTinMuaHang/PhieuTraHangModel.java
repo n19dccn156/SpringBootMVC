@@ -9,32 +9,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "tblPhieuTraHang")
 public class PhieuTraHangModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maPhieuTraHang;
     @Column(name = "ngayTraHang", nullable = false)
     private Date ngayTraHang;
     @Column(name = "maTrangThai", nullable = false)
     private int maTrangThai;
-    @Column(name = "tongTien", nullable = false)
-    private float tongTien;
-    @Column(name = "maHoaDon", nullable = false)
-    private int maHoaDon;
-    @Column(name = "maNhanVien")
-    private int maNhanVien;
+    @Column(name = "maNhanVien", nullable = true)
+    private Integer maNhanVien;
 
-    public PhieuTraHangModel() {
-    }
+    public PhieuTraHangModel() {}
 
-    public PhieuTraHangModel(Date ngayTraHang, int maTrangThai, float tongTien, int maHoaDon, int maNhanVien) {
+    public PhieuTraHangModel(Date ngayTraHang, int maTrangThai, int maNhanVien) {
         this.ngayTraHang = ngayTraHang;
         this.maTrangThai = maTrangThai;
-        this.tongTien = tongTien;
-        this.maHoaDon = maHoaDon;
         this.maNhanVien = maNhanVien;
     }
 
@@ -54,37 +48,20 @@ public class PhieuTraHangModel {
         this.ngayTraHang = ngayTraHang;
     }
 
-    public int getTrangThai() {
+    public int getMaTrangThai() {
         return this.maTrangThai;
     }
 
-    public void setTrangThai(int maTrangThai) {
+    public void setMaTrangThai(int maTrangThai) {
         this.maTrangThai = maTrangThai;
     }
 
-    public float getTongTien() {
-        return this.tongTien;
-    }
-
-    public void setTongTien(float tongTien) {
-        this.tongTien = tongTien;
-    }
-
-    public int getMaHoaDon() {
-        return this.maHoaDon;
-    }
-
-    public void setMaHoaDon(int maHoaDon) {
-        this.maHoaDon = maHoaDon;
-    }
-
-    public int getMaNhanVien() {
+    public Integer getMaNhanVien() {
         return this.maNhanVien;
     }
 
     public void setMaNhanVien(int maNhanVien) {
         this.maNhanVien = maNhanVien;
     }
-
 
 }

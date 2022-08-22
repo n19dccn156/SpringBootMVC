@@ -8,17 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+import KhanhVySang.demo.Model.KhoaChinh.ChiTietUuDaiKey;
+
 @Entity
-@IdClass(ChiTietUuDaiModel.class)
 @Table(name = "tblChiTietUuDai")
+@IdClass(ChiTietUuDaiKey.class)
 public class ChiTietUuDaiModel implements Serializable{
-    
+
     @Id
-    private int maUuDai;
-    @Id
+    @Column(name = "maKhachHang", nullable = false)
     private int maKhachHang;
+    @Id
+    @Column(name = "maUuDai", nullable = false)
+    private int maUuDai;
     @Column(name = "SoLuong", nullable = false)
     private int soLuong;
+
 
     public ChiTietUuDaiModel() {}
 
@@ -33,14 +38,14 @@ public class ChiTietUuDaiModel implements Serializable{
     }
 
     public void setMaUuDai(int maUuDai) {
-        this.maUuDai = maUuDai;
+        this.maUuDai= maUuDai;
     }
 
-    public int getMaKhachHang() {
+    public int getKhachHang() {
         return this.maKhachHang;
     }
 
-    public void setMaKhachHang(int maKhachHang) {
+    public void setKhachHang(int maKhachHang) {
         this.maKhachHang = maKhachHang;
     }
 

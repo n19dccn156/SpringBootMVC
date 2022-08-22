@@ -5,7 +5,7 @@ import java.sql.Date;
 public class FormDangKy {
     private String tenDangNhap;
     private String matKhau;
-    private String mlMatKhau;
+    private String nlMatKhau;
     private String email;
     private String ho;
     private String ten;
@@ -13,13 +13,12 @@ public class FormDangKy {
     private String dienThoai;
     private Date ngaySinh;
 
-
     public FormDangKy() {}
 
     public FormDangKy(String tenDangNhap, String matKhau, String nhapLaiMatKhau, String email, String ho, String ten, String gioiTinh, String dienThoai, Date ngaySinh) {
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
-        this.mlMatKhau = nhapLaiMatKhau;
+        this.nlMatKhau = nhapLaiMatKhau;
         this.email = email;
         this.ho = ho;
         this.ten = ten;
@@ -45,11 +44,11 @@ public class FormDangKy {
     }
 
     public String getNhapLaiMatKhau() {
-        return this.mlMatKhau;
+        return this.nlMatKhau;
     }
 
     public void setNhapLaiMatKhau(String nhapLaiMatKhau) {
-        this.mlMatKhau = nhapLaiMatKhau;
+        this.nlMatKhau = nhapLaiMatKhau;
     }
 
     public String getEmail() {

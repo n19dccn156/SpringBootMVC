@@ -9,17 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "tblUuDaiSanPham")
 public class UuDaiSanPhamModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int maUuDai;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer maUuDai;
     @Column(name = "tenUuDai", unique = true, nullable = false, length = 50)
     private String tenUuDai;
     @Column(name = "phanTramUuDai", nullable = false)
-    private float phanTramUuDai;
+    private Integer phanTramUuDai;
     @Column(name = "moTa", length = 300)
     private String moTa;
     @Column(name = "ngayBatDau", nullable = false)
@@ -27,10 +28,11 @@ public class UuDaiSanPhamModel {
     @Column(name = "ngayKetThuc", nullable = false)
     private Date ngayKetThuc;
     @Column(name = "maNhanVien", nullable = false)
-    private int maNhanVien;
+    private Integer maNhanVien;
 
+    public UuDaiSanPhamModel(){}
 
-    public UuDaiSanPhamModel(String tenUuDai, float phanTramUuDai, 
+    public UuDaiSanPhamModel(String tenUuDai, int phanTramUuDai, 
                             String moTa, Date ngayBatDau, 
                             Date ngayKetThuc, int maNhanVien) {
         this.tenUuDai = tenUuDai;
@@ -57,11 +59,11 @@ public class UuDaiSanPhamModel {
         this.tenUuDai = tenUuDai;
     }
 
-    public float getPhanTramUuDai() {
+    public int getPhanTramUuDai() {
         return this.phanTramUuDai;
     }
 
-    public void setPhanTramUuDai(float phanTramUuDai) {
+    public void setPhanTramUuDai(int phanTramUuDai) {
         this.phanTramUuDai = phanTramUuDai;
     }
 

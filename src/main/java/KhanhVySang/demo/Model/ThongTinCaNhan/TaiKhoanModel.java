@@ -16,29 +16,43 @@ public class TaiKhoanModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maTaiKhoan;
-    @Column(name = "tenDangNhap", unique = true, nullable = false, length = 20)
+    @Column(name = "tenDangNhap", unique = true, nullable = false, length = 100)
     private String tenDangNhap;
-    @Column(name = "matKhau", nullable = false, length = 20)
+    @Column(name = "matKhau", nullable = false, length = 100)
     private String matKhau;
-    @Column(name = "email", unique = true, nullable = false, length = 50)
+    @Column(name = "email", unique = true, nullable = false, length = 100)
     private String email;
-    @Column(name = "ngayTao", nullable = false)
+    @Column(name = "ngayTao")
     private Date ngayTao;
-    @Column(name = "maChucVu", nullable = false)
-    private int maChucVu;
+    @Column(name = "quyen")
+    private String quyen;
+
 
     public TaiKhoanModel() {}
 
     public TaiKhoanModel(String tenDangNhap, String matKhau, String email, 
-                        Date ngayTao, int maChucVu) {
+                        Date ngayTao, String quyen) {
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
         this.email = email;
         this.ngayTao = ngayTao;
-        this.maChucVu = maChucVu;
+        this.quyen = quyen;
     }
+
+    public TaiKhoanModel(String tenDangNhap, String matKhau, String email, 
+                        String quyen) {
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
+        this.email = email;
+        this.quyen = quyen;
+    }
+
     public int getMaTaiKhoan() {
         return this.maTaiKhoan;
+    }
+
+    public void setMaTaiKhoan(int maTaiKhoan){
+        this.maTaiKhoan = maTaiKhoan;
     }
 
     public String getTenDangNhap() {
@@ -71,11 +85,14 @@ public class TaiKhoanModel {
     public void setNgayTao(Date ngayTao) {
         this.ngayTao = ngayTao;
     }
-    public int getMaChucVu() {
-        return this.maChucVu;
+
+    public String getQuyen() {
+        return this.quyen;
     }
 
-    public void setMaChucVu(int maChucVu) {
-        this.maChucVu = maChucVu;
+    public void setQuyen(String quyen) {
+        this.quyen = quyen;
     }
+
+
 }

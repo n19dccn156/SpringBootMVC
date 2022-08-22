@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewp80
+  uytr ort" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Tabbed IFrames</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <th:block th:include="NhanVien/sidebar.html :: sidebar"></th:block>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
+  <div class="wrapper">
+    <div th:replace="NhanVien/sidebar.html :: header"></div>
+    <div class=" iframe-mode " data-widget="iframe" data-loading-screen="750" style="display: flex;
+  justify-content: center">
+
+      <div class="tab-content mt-2 mb-5" style="width: 1100px; ">
+        <div style="display: flex; justify-content: center;">
+          <h2>Thông Tin Sản Phẩm</h2>
+        </div>
+        <form th:action="@{/ad/insert/sanpham}" method="post" th:object="${formInsertSanPham}" enctype="multipart/form-data" class="mt-3 ml-5 mr-5">
+          <p class="row" th:text="${messageSP}" style="color: brown;"></p>
+          <div class="row">
+            <div class="col col-half">
+              <label>Tên Sản Phẩm</label>
+              <input type="text" name="tenSanPham" id="tenSanPham" required placeholder="Hồi Ký Thích Nhất Hạnh" class="form-control">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col col-half">
+              <label>Mô Tả</label>
+              <input type="text" name="moTa" id="moTa" required placeholder="Mô Tả" class="form-control">
+            </div>
+            <div class="col col-half">
+              <label>Giá</label>
+              <div class="input-group">
+                <input type="number" name="gia" id="gia" class="form-control" aria-label="Amount" required>
+                <div class="input-group-append">
+                    <span class="input-group-text">VND</span>
+                </div>
+             </div>
+            </div>
+          </div>
+          <div class="row  mt-3">
+            <div class="col col-half">
+              <label>Hình Ảnh</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="hinhAnh" id="hinhAnh" required>
+                <label class="custom-file-label" for="hinhAnh"></label>
+              </div>  
+            </div>
+            
+            <div class="col col-half">
+              <label>Loại Sản Phẩm</label>
+              <div class="input-group">
+                <input list="browsers" name="loaiSanPham" required>
+                <datalist id="browsers">
+                  <div th:each="lsp : ${loaiSanPhamAll}">
+                    <option th:value="${lsp.maLoaiSanPham}" th:utext="${lsp.tenLoaiSanPham}">
+                  </div>
+                </datalist>
+              </div>
+            </div>
+          </div>
+          <button style="width: 100%;" class="w3-button w3-light-blue ml-2 mt-3" type="submit">Thêm</button>
+        </form>
+        <div class="button-group">
+          <div class="input-group rounded mt-2 ml-4" style="width: 30%;">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+              aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+
+          <div class="input-group rounded mt-2 ml-4" style="width: 15%; display: flex; justify-content: flex-end;">
+            <div class="dropdown">
+              <button class="w3-button w3-light-blue dropdown-toggle mr-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Lọc Danh Mục
+              </button>
+              <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuButton">
+                <div th:each="dm : ${danhmuc}">
+                  <a class="dropdown-item" th:style="${sapxepdm == dm.maDanhMuc}? 'background-color: #D19C97;'" th:href="@{/ad/sp/?(sapxepdm=${dm.maDanhMuc},sapxeplsp=${maLoaiSanPham})}" th:text="${lsp.tenLoaiSanPham}"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group rounded mt-2 ml-4" style="width: 15%; display: flex; justify-content: flex-end;">
+            <div class="dropdown">
+              <button class="w3-button w3-light-blue dropdown-toggle mr-5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Lọc Loại Sản Phẩm
+              </button>
+              <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuButton">
+                <div th:each="lsp : ${loaiSanPham}">
+                  <a class="dropdown-item" th:style="${sapxeplsp == lsp.maLoaiSanPham}? 'background-color: #D19C97;'" th:href="@{/ad/sp/?(sapxepdm=${maDanhMuc},sapxeplsp=${lsp.maLoaiSanPham})}" th:text="${lsp.tenLoaiSanPham}"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- bảng thông tin -->
+        <table style="width: 98%;" class="table table-hover w3-table w3-striped  mt-4 ml-3">
+          <tr class="w3-light-blue">
+            <th>Tên Sản Phẩm</th>
+            <th>Giá</th>
+            <th>Số Lượng</th>
+            <th>Loại sản phẩm</th>
+            <th>Sửa</th>
+
+          </tr>
+          <tr th:each="sp : ${sanpham}">
+            <td th:utext="${sp.tenSanPham}"></td>
+            <td th:utext="${sp.gia}"></td>
+            <td th:utext="${sp.soLuong}"></td>
+            <td th:utext="${sp.tenLoaiSanPham}"></td>
+            <td><a href="#">
+                <button type="button" class="w3-button w3-blue-grey">Sửa</button>
+              </a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <!-- overlayScrollbars -->
+  <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+  <!-- AdminLTE App -->
+  <script th:src="@{/dist/js/adminlte.js}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script th:src="@{/dist/js/demo.js}"></script>
+  <script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    </script>
+</body>
+
+</html>

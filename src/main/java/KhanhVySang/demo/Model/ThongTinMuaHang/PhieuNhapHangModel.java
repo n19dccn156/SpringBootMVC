@@ -9,33 +9,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "tblPhieuNhapHang")
 public class PhieuNhapHangModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int maPhieuNhap;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int maPhieuNhapHang;
     @Column(name = "ngayNhapHang", nullable = false)
     private Date ngayNhapHang;
     @Column(name = "maNhanVien", nullable = false)
     private int maNhanVien;
 
-
-    public PhieuNhapHangModel() {
-    }
+    public PhieuNhapHangModel() {}
 
     public PhieuNhapHangModel(Date ngayNhapHang, int maNhanVien) {
         this.ngayNhapHang = ngayNhapHang;
         this.maNhanVien = maNhanVien;
     }
 
-    public int getMaPhieuNhap() {
-        return this.maPhieuNhap;
+    public int getMaPhieuNhapHang() {
+        return this.maPhieuNhapHang;
     }
 
-    public void setMaPhieuNhap(int maPhieuNhap) {
-        this.maPhieuNhap = maPhieuNhap;
+    public void setMaPhieuNhapHang(int maPhieuNhap) {
+        this.maPhieuNhapHang = maPhieuNhap;
     }
 
     public Date getNgayNhapHang() {

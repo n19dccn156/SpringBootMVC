@@ -9,37 +9,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "tblUuDaiKhachHang")
 public class UuDaiKhachHangModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maUuDai;
     @Column(name = "tenUuDai", nullable = false, length = 50)
     private String tenUuDai;
     @Column(name = "phanTramUuDai", nullable = false)
-    private float phanTramUuDai;
+    private int phanTramUuDai;
     @Column(name = "moTa", length = 300)
     private String moTa;
     @Column(name = "dieuKien", nullable = false)
-    private float dieuKien;
+    private int dieuKien;
     @Column(name = "donGiaToiThieu", nullable = false)
-    private float donGiaToiThieu;
+    private int donGiaToiThieu;
     @Column(name = "uuDaiToiDa", nullable = false)
-    private float uuDaiToiDa;
+    private int uuDaiToiDa;
     @Column(name = "ngayBatDau", nullable = false)
     private Date ngayBatDau;
     @Column(name = "ngayKetThuc", nullable = false)
     private Date ngayKetThuc;
-    @Column(name = "maNhanvien", nullable = false)
+    @Column(name = "maNhanVien", nullable = false)
     private int maNhanVien;
 
 
     public UuDaiKhachHangModel() {}
 
-    public UuDaiKhachHangModel(String tenUuDai, float phanTramUuDai, String moTa, 
-                            float dieuKien, float donGiaToiThieu, float uuDaiToiDa, 
+    public UuDaiKhachHangModel(String tenUuDai, int phanTramUuDai, String moTa, 
+                            int dieuKien, int donGiaToiThieu, int uuDaiToiDa, 
                             Date ngayBatDau, Date ngayKetThuc, int maNhanVien) {
         this.tenUuDai = tenUuDai;
         this.phanTramUuDai = phanTramUuDai;
@@ -68,11 +69,11 @@ public class UuDaiKhachHangModel {
         this.tenUuDai = tenUuDai;
     }
 
-    public float getPhanTramUuDai() {
+    public int getPhanTramUuDai() {
         return this.phanTramUuDai;
     }
 
-    public void setPhanTramUuDai(float phanTramUuDai) {
+    public void setPhanTramUuDai(int phanTramUuDai) {
         this.phanTramUuDai = phanTramUuDai;
     }
 
@@ -84,19 +85,19 @@ public class UuDaiKhachHangModel {
         this.moTa = moTa;
     }
 
-    public float getDieuKien() {
+    public int getDieuKien() {
         return this.dieuKien;
     }
 
-    public void setDieuKien(float dieuKien) {
+    public void setDieuKien(int dieuKien) {
         this.dieuKien = dieuKien;
     }
 
-    public float getDonGiaToiThieu() {
+    public int getDonGiaToiThieu() {
         return this.donGiaToiThieu;
     }
 
-    public void setDonGiaToiThieu(float donGiaToiThieu) {
+    public void setDonGiaToiThieu(int donGiaToiThieu) {
         this.donGiaToiThieu = donGiaToiThieu;
     }
 
@@ -104,7 +105,7 @@ public class UuDaiKhachHangModel {
         return this.uuDaiToiDa;
     }
 
-    public void setUuDaiToiDa(float uuDaiToiDa) {
+    public void setUuDaiToiDa(int uuDaiToiDa) {
         this.uuDaiToiDa = uuDaiToiDa;
     }
 
@@ -131,4 +132,5 @@ public class UuDaiKhachHangModel {
     public void setMaNhanVien(int maNhanVien) {
         this.maNhanVien = maNhanVien;
     }
+
 }

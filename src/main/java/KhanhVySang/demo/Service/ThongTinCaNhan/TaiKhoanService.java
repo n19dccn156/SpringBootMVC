@@ -1,87 +1,89 @@
-// package KhanhVySang.demo.Service.ThongTinCaNhan;
+package KhanhVySang.demo.Service.ThongTinCaNhan;
 
-// import java.util.ArrayList;
-// import java.util.List;
+import java.sql.Date;
+import java.util.List;
+import java.util.Optional;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// // import org.springframework.security.core.GrantedAuthority;
-// // import org.springframework.security.core.authority.SimpleGrantedAuthority;
-// // import org.springframework.security.core.userdetails.User;
-// // import org.springframework.security.core.userdetails.UserDetails;
-// // import org.springframework.security.core.userdetails.UsernameNotFoundException;
-// import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// import KhanhVySang.demo.Model.ThongTinCaNhan.ChucVuModel;
-// import KhanhVySang.demo.Model.ThongTinCaNhan.KhachHangModel;
-// import KhanhVySang.demo.Model.ThongTinCaNhan.NhanVienModel;
-// import KhanhVySang.demo.Model.ThongTinCaNhan.TaiKhoanModel;
-// import KhanhVySang.demo.Repositories.ThongTinCaNhan.ChucVuRepository;
-// import KhanhVySang.demo.Repositories.ThongTinCaNhan.KhachHangRepository;
-// import KhanhVySang.demo.Repositories.ThongTinCaNhan.NhanVienRepository;
-// import KhanhVySang.demo.Repositories.ThongTinCaNhan.TaiKhoanRepository;
+import KhanhVySang.demo.Model.ThongTinCaNhan.TaiKhoanModel;
+import KhanhVySang.demo.Repositories.ThongTinCaNhan.TaiKhoanRepository;
 
-// @Service
-// public class TaiKhoanService {
+@Service
+public class TaiKhoanService {
     
-//     @Autowired
-//     private TaiKhoanRepository taiKhoanRepository;
-//     // @Autowired
-//     // private ChucVuRepository chucVuRepository;
-//     // @Autowired
-//     // private NhanVienRepository nhanVienRepository;
-//     // @Autowired
-//     // private KhachHangRepository khachHangRepository;
+    @Autowired
+    private TaiKhoanRepository taiKhoanRepository;
 
-//     public List<TaiKhoanModel> getTatCaTaiKhoan(){
-//         List<TaiKhoanModel> list = taiKhoanRepository.findAll();
+    public List<TaiKhoanModel> findAll(){
+        return taiKhoanRepository.findAll();
+    }
 
-//         return list;
-//     }
+    public TaiKhoanModel findByMaTaiKhoan(int maTaiKhoan){
+        Optional<TaiKhoanModel> oTK = taiKhoanRepository.findByMaTaiKhoan(maTaiKhoan);
+        TaiKhoanModel tk = new TaiKhoanModel();
+        if(oTK.isEmpty()) return tk;
 
-//     public TaiKhoanModel findTenDangNhap(String tenDangNhap){
-//         TaiKhoanModel taikhoan = taiKhoanRepository.findByTenDangNhap(tenDangNhap);
-//         return taikhoan;
-//     }
+        return oTK.get();
+    }
 
-//     // public UserDetails loadTaiKhoanByTenDangNhap(String tenDangNhap) throws UsernameNotFoundException {
-     
-//     //     TaiKhoanModel taiKhoan = taiKhoanRepository.findByTenDangNhap(tenDangNhap);
+    public TaiKhoanModel findByTenDangNhap(String tenDangNhap){
+        Optional<TaiKhoanModel> oTK = taiKhoanRepository.findByTenDangNhap(tenDangNhap);
+        TaiKhoanModel tk = new TaiKhoanModel();
+        if(oTK.isEmpty()) return tk;
+
+        return oTK.get();
+    }
+
+    public TaiKhoanModel findByTenDangNhapAndMatKhau(String tenDangNhap, String matKhau){
+        Optional<TaiKhoanModel> oTK = taiKhoanRepository.findByTenDangNhapAndMatKhau(tenDangNhap, matKhau);
+        TaiKhoanModel tk = new TaiKhoanModel();
+        if(oTK.isEmpty()) return tk;
+        return oTK.get();
+    }
+
+    public TaiKhoanModel findByEmail(String email) {
+        Optional<TaiKhoanModel> oTK = taiKhoanRepository.findByEmail(email);
+        TaiKhoanModel tk = new TaiKhoanModel();
         
-//     //     if(taiKhoan == null) {
-//     //         throw new UsernameNotFoundException("Tài khoản " + tenDangNhap + "không tìm thấy");
-//     //     }
+        if(oTK.isEmpty()) return tk;
 
-//     //     int roleCode = taiKhoan.getMaChucVu();
-//     //     ChucVuModel chucvu = chucVuRepository.findByMaChucVu(roleCode);
-//     //     String role = chucvu.getTenChucVu();
+        return oTK.get();
+    }
 
-//     //     List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+    public List<TaiKhoanModel> findByNgayTao(Date ngayTao){
+        return taiKhoanRepository.findByNgayTao(ngayTao);
+    }
 
-//     //     GrantedAuthority quyen = new SimpleGrantedAuthority(role);
+    public List<TaiKhoanModel> findByQuyen(String quyen){
+        return taiKhoanRepository.findByQuyen(quyen);
+    }
 
-//     //     grantList.add(quyen);
+    public boolean updateTaiKhoanByMatKhau(String tenDangNhap, String matKhauCu, String matKhauMoi){
+        if(matKhauMoi.length() > 20) return false;
 
-//     //     boolean accountNonLocked = true;
-//     //     NhanVienModel nv = nhanVienRepository.findByMaTaiKhoan(taiKhoan.getMaTaiKhoan());
-//     //     if(nv != null){
-//     //         if(nv.getTrangThai() == false) accountNonLocked = false;
-//     //     } else {
-//     //         KhachHangModel kh = khachHangRepository.findByMaTaiKhoan(taiKhoan.getMaTaiKhoan());
-//     //         if(kh == null) accountNonLocked = false;
-//     //     }
+        try {
+            return taiKhoanRepository.updateTaiKhoan(tenDangNhap, matKhauCu, matKhauMoi);
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
-//     //     boolean enabled = true;
-//     //     boolean accountNonExpired = true;
-//     //     boolean credentialsNonExpired = true;
+    public boolean updateTaiKhoan(TaiKhoanModel taiKhoan){
+        try {
+            return taiKhoanRepository.updateTaiKhoan(taiKhoan.getMaTaiKhoan(), taiKhoan.getMatKhau(), taiKhoan.getEmail());
+        } catch (Exception e) {
+            return false;
+        }
+    } 
 
-//     //     UserDetails userDetails = (UserDetails) new User(taiKhoan.getTenDangNhap(),
-//     //                                                     taiKhoan.getMatKhau(), 
-//     //                                                     enabled, 
-//     //                                                     accountNonExpired,
-//     //                                                     credentialsNonExpired, 
-//     //                                                     accountNonLocked, 
-//     //                                                     grantList);
-        
-//     //     return userDetails;
-//     // }
-// }
+    public boolean insertTaiKhoan(TaiKhoanModel taiKhoan){
+        try {
+            return taiKhoanRepository.InsertTaiKhoan(taiKhoan.getTenDangNhap(), taiKhoan.getMatKhau(), taiKhoan.getEmail());
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+}

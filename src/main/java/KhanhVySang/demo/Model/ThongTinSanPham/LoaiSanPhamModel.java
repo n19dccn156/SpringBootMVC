@@ -1,5 +1,6 @@
 package KhanhVySang.demo.Model.ThongTinSanPham;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 public class LoaiSanPhamModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maLoaiSanPham;
     @Column(name = "tenLoaiSanPham", nullable = false, unique = true, length = 50)
     private String tenLoaiSanPham;
@@ -21,14 +22,13 @@ public class LoaiSanPhamModel {
     @Column(name = "maDanhMuc", nullable = false)
     private int maDanhMuc;
 
-
     public LoaiSanPhamModel() {}
 
     public LoaiSanPhamModel(String tenLoaiSanPham, boolean trangThai, 
                             int maDanhMuc) {
         this.tenLoaiSanPham = tenLoaiSanPham;
         this.trangThai = trangThai;
-        this.maDanhMuc = maDanhMuc;
+        this.maDanhMuc= maDanhMuc;
     }
 
     public int getMaLoaiSanPham() {
@@ -59,14 +59,11 @@ public class LoaiSanPhamModel {
         this.trangThai = trangThai;
     }
 
-    public int getMaDanhMuc() {
-        return this.maDanhMuc;
+    public int getMaDanhMuc(){
+        return maDanhMuc;
     }
 
     public void setMaDanhMuc(int maDanhMuc) {
         this.maDanhMuc = maDanhMuc;
     }
-
-
-
 }

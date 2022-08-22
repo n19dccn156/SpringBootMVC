@@ -12,13 +12,15 @@ import javax.persistence.Table;
 public class DanhMucModel {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maDanhMuc;
     @Column(name = "tenDanhMuc", unique = true, nullable = false, length = 50)
     private String tenDanhMuc;
     @Column(name = "trangThai", nullable = false)
     private boolean trangThai;
-
+    @Column(name = "hinhAnh")
+    private String hinhAnh;
+    
     public DanhMucModel() {}
 
     public DanhMucModel(int maDanhMuc, String tenDanhMuc, boolean trangThai) {
@@ -27,7 +29,7 @@ public class DanhMucModel {
         this.trangThai = trangThai;
     }
 
-    public long getMaDanhMuc() {
+    public int getMaDanhMuc() {
         return this.maDanhMuc;
     }
 
@@ -43,10 +45,6 @@ public class DanhMucModel {
         this.tenDanhMuc = tenDanhMuc;
     }
 
-    public boolean isTrangThai() {
-        return this.trangThai;
-    }
-
     public boolean getTrangThai() {
         return this.trangThai;
     }
@@ -54,6 +52,16 @@ public class DanhMucModel {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+
+    public String getHinhAnh() {
+        return this.hinhAnh;
+    }
+
+    public void setHinhAnh(String hinhAnh) {
+        this.hinhAnh = hinhAnh;
+    }
+
 
 
 }
